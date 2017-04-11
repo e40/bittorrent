@@ -1,4 +1,5 @@
-(in-package :user)
+
+(in-package :bittorrent)
 
 (defmacro digit-byte-p (byte)
   (let ((x (gensym)))

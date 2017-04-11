@@ -1,11 +1,16 @@
 
-(defvar *files* '("bittorrent-common.cl"
-		  "bencoding.cl"
-		  "bittorrent.cl"))
+(in-package :user)
+
+(defvar *files* '("bittorrent/bittorrent-common.cl"
+		  "bittorrent/bencoding.cl"
+		  "bittorrent/bittorrent.cl"))
     
 (dolist (file *files*)
-  (load (compile-file-if-needed file)))
+  (let ((f (compile-file file)))
+    (push f *fasls*)
+    (load f)))
 
+#+ignore
 (let ((full-fasl "bittorrent_full.fasl"))
   (format t ";; Creating ~a...~%" full-fasl)
   (with-open-file (s full-fasl :direction :output
